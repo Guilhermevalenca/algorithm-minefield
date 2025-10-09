@@ -6,9 +6,9 @@ import (
 
 type Element struct {
 	Type int `json:"type"`
-	is_revealed bool
-	is_flag bool
-	Value int
+	IsRevealed bool `json:"is_revealed"`
+	IsFlag bool `json:"is_flag"`
+	Value int `json:"value"`
 }
 
 
@@ -24,17 +24,13 @@ func NewElement(t int) (Element, error) {
 	}
 	response := Element{
 		Type: t,
-		is_revealed: false,
-		is_flag: false,
+		IsRevealed: false,
+		IsFlag: false,
 		Value: 0,
 	}
 	return response, nil;
 }
 
-
-func (e Element) IsRevealed() bool {
-	return e.is_revealed;
-}
 
 func isValid(t int) bool {
 	switch t {
@@ -47,10 +43,6 @@ func isValid(t int) bool {
 
 func (e Element) IsMine() bool {
 	return e.Type == MINE;
-}
-
-func (e Element) IsFlagged() bool {
-	return e.is_flag;
 }
 
 func (e Element) IsEmpty() bool	 {

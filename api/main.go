@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	generatedMap "minefield/main/app/map"
+	"minefield/main/src/routes"
 )
 
 type Person struct {
@@ -12,9 +12,8 @@ type Person struct {
 
 func main() {
 	fmt.Println("Hello, World! - IN MAIN")
-	generatedMap.Example();
 
-	currentMap := generatedMap.GenerateMap(20, 40);
-	currentMap.LogMatrix();
-	
+	router := routes.Routes();
+	fmt.Println("Started Server!");
+	router.Run("localhost:8000");
 }
