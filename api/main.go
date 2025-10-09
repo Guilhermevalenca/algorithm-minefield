@@ -6,10 +6,6 @@ import (
 	"minefield/main/src/routes"
 )
 
-type Person struct {
-	Name string;
-}
-
 func main() {
 	fmt.Println("Hello, World! - IN MAIN")
 
