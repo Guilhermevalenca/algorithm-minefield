@@ -11,7 +11,6 @@ type Element struct {
 	Value int `json:"value"`
 }
 
-
 const (
 	EMPTY = 0
 	NUMBER = 1
@@ -30,7 +29,6 @@ func NewElement(t int) (Element, error) {
 	}
 	return response, nil;
 }
-
 
 func isValid(t int) bool {
 	switch t {

@@ -4,6 +4,7 @@ package generatedMap
 import (
 	"fmt"
 	"math/rand"
+	"os"
 	"time"
 
 	"minefield/main/app/element"
@@ -61,19 +62,15 @@ func GenerateMap(limit_row int, limit_col int) Map {
 
 func (currentMap *Map) addRandomMines() {
 	rand.Seed(time.Now().UnixNano())
-	max := currentMap.Rows * currentMap.Cols;
-	min := (currentMap.Rows + currentMap.Cols) / 4;
+	max := currentMap.Rows * currentMap.Cols / 3;
+	min := (currentMap.Rows * currentMap.Cols) / 6;
 
-	quantity_mines := rand.Intn(max + min);
-
-	if(quantity_mines < 3) {
-		quantity_mines = 3;
-	}
+	quantity_mines := rand.Intn(max - min) + min;
 
 	for i, row := range currentMap.Matrix {
 		for j, elementChild := range row {
 			if(elementChild.IsEmpty()) {
-				if(rand.Float64() < 0.2 && quantity_mines > 0) {
+				if (rand.Intn(100) < 15 && quantity_mines > 0) {
 					currentMap.Matrix[i][j].Type = element.MINE;
 					quantity_mines--;
 					currentMap.total_mines++;
@@ -108,22 +105,41 @@ func (currentMap *Map) defineNumber(row int, col int) {
 }
 
 
-func (currentMap *Map) LogMatrix() {
+func (currentMap Map) LogMatrix() {
+	messageArchive := "";
 	for i, row := range currentMap.Matrix {
-		message := "";
+		messageLog := "";
 		for j, elementChild := range row {
+			currentMessage := "";
 			if (elementChild.IsMine()) {
-				message = message + "X ";
+				currentMessage += "X";
 			} else if(elementChild.IsNumber()) {
-				message = message + fmt.Sprintf("%d ", elementChild.Value);
+				currentMessage += fmt.Sprintf("%d", elementChild.Value);
 			} else {
-				message = message + "_ ";
+				currentMessage += "_";
 			}
-			message += fmt.Sprintf("[row: %d, col: %d, revealed: %t]", i, j, elementChild.IsRevealed);
-			message += " ";
+			row := fmt.Sprintf("%d", i);
+			col := fmt.Sprintf("%d", j);
+			if(i < 10) {
+				row = "0" + row;
+			}
+			if(j < 10) {
+				col = "0" + col;
+			}
+			messageArchive += fmt.Sprintf("%s [r: %s, c: %s, revealed: %t] ",currentMessage,  row, col, elementChild.IsRevealed);
+			messageLog += fmt.Sprintf("%s ", currentMessage);
 		}
-		fmt.Println(message);
+		fmt.Println(messageLog);
+		messageArchive += "\n";
 	}
+	file, err := os.Create("saida.txt")
+	if err != nil {
+		panic(err)
+	}
+	defer file.Close()
+
+	// Escreve a mensagem no arquivo
+	fmt.Fprintln(file, messageArchive)
 }
 
 func (currentMap *Map) SelectCell(row int, col int) {

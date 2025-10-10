@@ -6,6 +6,7 @@ import (
 	"minefield/main/src/routes"
 )
 
+
 func main() {
 	fmt.Println("Hello, World! - IN MAIN")
 
@@ -13,3 +14,4 @@ func main() {
 	fmt.Println("Started Server!");
 	router.Run("localhost:8000");
 }
+

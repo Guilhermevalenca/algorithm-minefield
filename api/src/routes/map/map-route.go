@@ -23,6 +23,7 @@ func Routes(router *gin.RouterGroup) {
 
 func generateMap(context *gin.Context) {
 	var limits generatedMap.Cell;
+	fmt.Println(limits);
 	if err := context.BindJSON(&limits); err != nil {
         return
     }
@@ -30,6 +31,8 @@ func generateMap(context *gin.Context) {
 	context.JSON(http.StatusOK, gin.H{
 		"map": currentMap,
 	});
+
+	currentMap.LogMatrix();
 }
 
 func getMap(context *gin.Context) {
@@ -49,7 +52,7 @@ func selectCell(context *gin.Context) {
 	currentMap.VerifyStatus();
 
 	context.JSON(http.StatusOK, gin.H{
-		"map": currentMap,
+		"status": currentMap.Status,
 	});
 
 	currentMap.LogMatrix();
@@ -65,6 +68,6 @@ func toggleFlag(context *gin.Context) {
 
 	currentMap.ToggleFlag(cell.ROW, cell.COL);
 	context.JSON(http.StatusOK, gin.H{
-		"map": currentMap,
+		"map": nil,
 	});
 }

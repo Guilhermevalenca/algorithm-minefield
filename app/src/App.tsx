@@ -1,35 +1,46 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, type FormEvent } from "react";
+import "./App.css";
+import { RenderMap } from "./components";
+import { useFetchMap } from "./hooks";
+import { mapService } from "./app/services";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const { map, refresh } = useFetchMap();
+  const [form, setForm] = useState({
+    row: 0,
+    col: 0,
+  });
+
+  async function submit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    await mapService.generateMap(form.row, form.col);
+
+    refresh();
+  }
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <form onSubmit={submit}>
+        <label>
+          Total de linhas:
+          <input
+            type="number"
+            onChange={(e) => setForm({ ...form, row: Number(e.target.value) })}
+          />
+        </label>
+        <label>
+          Total de colunas:
+          <input
+            type="number"
+            onChange={(e) => setForm({ ...form, col: Number(e.target.value) })}
+          />
+        </label>
+        <button type="submit">Gerar mapa</button>
+      </form>
+      {map && <RenderMap map={map} refresh={refresh} />}
     </>
-  )
+  );
 }
 
-export default App
+export default App;
