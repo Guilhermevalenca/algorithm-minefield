@@ -6,8 +6,12 @@ export class MapService extends Service {
   constructor(axios: AxiosInstance) {
     super(axios);
   }
-  async getMap(): Promise<MapEntity> {
+  async getMap(): Promise<MapEntity | null> {
     const { data } = await this.axios.get<{ map: MapEntity }>("/map");
+
+    if (data.map.rows <= 0 || data.map.cols <= 0) {
+      return null;
+    }
 
     return new MapEntity(
       data.map.matrix,
@@ -36,17 +40,17 @@ export class MapService extends Service {
     );
   }
 
-  async selectCell(map: MapEntity, row: number, col: number) {
-    if (row < 0 || col < 0 || map.matrix[row][col] === undefined) {
+  async selectCell(row: number, col: number) {
+    if (row < 0 || col < 0) {
       throw new Error("Elemento invalido, fora do escopo do mapa");
     }
-    const { data } = await this.axios.post("/select-cell", {
+    const { data } = await this.axios.post("/map/select-cell", {
       row,
       col,
     });
 
-    if (data.status) {
-      map.status = data.status;
-    }
+    return {
+      status: data.status,
+    };
   }
 }

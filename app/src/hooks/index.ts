@@ -1,3 +1,3 @@
-import { useFetchMap } from "./use-fetch-map";
+import { useMap } from "./use-map";
 
-export { useFetchMap };
+export { useMap };

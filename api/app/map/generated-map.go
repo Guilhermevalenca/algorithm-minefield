@@ -26,7 +26,7 @@ type Map struct {
 }
 
 const (
-	VITORY = "Vitoria"
+	VICTORY = "Vitoria"
 	DEFEAT = "Derrota"
 	IN_PROGRESS = "in_progress"
 )
@@ -182,7 +182,7 @@ func (currentMap *Map) VerifyStatus() {
 	}
 
 	if(elementsRevealed == currentMap.Rows * currentMap.Cols - currentMap.total_mines) {
-		currentMap.Status = VITORY;
+		currentMap.Status = VICTORY;
 	} else if(elementsRevealed > currentMap.Rows * currentMap.Cols - currentMap.total_mines) {
 		currentMap.Status = DEFEAT;
 	}

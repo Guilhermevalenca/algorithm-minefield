@@ -16,9 +16,9 @@ func Routes(router *gin.RouterGroup) {
 
 	router.POST("/map", generateMap);
 
-	router.POST("select-cell", selectCell);
+	router.POST("/map/select-cell", selectCell);
 
-	router.POST("toggle-flag", toggleFlag);
+	router.POST("/map/toggle-flag", toggleFlag);
 }
 
 func generateMap(context *gin.Context) {
@@ -49,14 +49,21 @@ func selectCell(context *gin.Context) {
 		return
 	}
 	currentMap.SelectCell(cell.ROW, cell.COL);
-	currentMap.VerifyStatus();
 
 	context.JSON(http.StatusOK, gin.H{
 		"status": currentMap.Status,
 	});
 
-	currentMap.LogMatrix();
 	fmt.Println(currentMap.Status);
+
+	if (currentMap.Status == generatedMap.DEFEAT || currentMap.Status == generatedMap.VICTORY) {
+		currentMap.Rows = 0;
+		currentMap.Cols = 0;
+		currentMap.Matrix = nil;
+		currentMap.Status = generatedMap.IN_PROGRESS;
+	} else {
+		currentMap.LogMatrix();
+	}
 }
 
 func toggleFlag(context *gin.Context) {

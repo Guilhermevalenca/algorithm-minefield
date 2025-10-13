@@ -1,28 +1,14 @@
 import { MapEntity } from "../app/entities";
-import { MapStatus } from "../app/enums";
-import { mapService } from "../app/services";
 import { RenderElement } from "./";
 
 type Props = {
   map: MapEntity | null;
-  refresh: () => Promise<void>;
+  updateElement: (row: number, col: number) => Promise<void>;
 };
 
-export function RenderMap({ map, refresh }: Props) {
+export function RenderMap({ map, updateElement }: Props) {
   if (!map) return <div>Mapa nao encontrado</div>;
-  async function updateElement(row: number, col: number) {
-    if (map) {
-      await mapService.selectCell(map, row, col);
 
-      if (map.status === MapStatus.DEFEAT) {
-        alert("Você perdeu");
-      } else if (map.status === MapStatus.VITORY) {
-        alert("você ganhou");
-      } else {
-        refresh();
-      }
-    }
-  }
   return (
     <>
       <table border={1}>

@@ -7,24 +7,24 @@ type Props = {
 };
 
 export function RenderElement({ element, setElement }: Props) {
-  let imagePath = "";
+  // let imagePath = "";
   let message = "";
 
   switch (element.type) {
     case ElementType.EMPTY:
-      imagePath = "";
+      // imagePath = "";
       message = "_";
       break;
     case ElementType.NUMBER:
-      imagePath = "";
+      // imagePath = "";
       message = element.value.toString();
       break;
     case ElementType.MINE:
-      imagePath = "";
+      // imagePath = "";
       message = "*";
       break;
     default:
-      imagePath = "";
+    // imagePath = "";
   }
 
   if (!element.is_revealed) {
