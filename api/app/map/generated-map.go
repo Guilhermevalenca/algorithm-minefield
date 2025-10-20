@@ -222,7 +222,7 @@ func (current *Map) generateStartingLine() {
 
 func (current *Map) generateFinishLine() {
 	for i := current.Rows - 1; i > 0; i-- {
-		for j := current.Cols - 1; j > 0; j++ {
+		for j := current.Cols - 1; j > 0; j-- {
 			if(current.Matrix[i][j].Type == element.EMPTY) {
 				current.finishLine = Cell{ROW: i, COL: j};
 				return;
