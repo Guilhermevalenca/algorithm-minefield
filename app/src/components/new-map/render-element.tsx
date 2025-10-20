@@ -14,28 +14,29 @@ export function RenderElement({
   setElement,
   player_quantity_upgrades,
 }: Props) {
-  // let imagePath = "";
+  let imagePath = "";
   let message = "";
 
   switch (element.type) {
     case ElementType.EMPTY:
-      // imagePath = "";
-      message = "_";
+      imagePath = "/public/images/default-floor.png";
       break;
     case ElementType.NUMBER:
-      // imagePath = "";
-      message = element.value.toString();
+      for(let i=1; i<9; i++){
+        if(element.value == i){
+          imagePath = `/public/images/floor-${i}.png`
+        }
+      }
       break;
     case ElementType.MINE:
-      // imagePath = "";
-      message = "*";
+      imagePath = "/public/images/explode-floor.gif";
       break;
     default:
-    // imagePath = "";
+    imagePath = "/public/images/default-floor.png";
   }
 
   if (!element.is_revealed) {
-    message = ":)";
+    imagePath = "/public/images/default-floor.png"
   }
 
   if (is_player) {
@@ -47,12 +48,12 @@ export function RenderElement({
 
   return (
     <td onClick={setElement}>
-      {/* <img
+      { <img
         src={imagePath}
         alt="Icone do elemento no campo minado"
         width="30"
         height="30"
-      /> */}
+      />}
       {element.is_flag && !element.is_revealed ? "🚩" : message}
     </td>
   );
