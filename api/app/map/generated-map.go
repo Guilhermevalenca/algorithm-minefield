@@ -142,6 +142,7 @@ func (current *Map) NextMove(player *player.Player, cell Cell) Cell {
 	}
 	player.X = cell.ROW;
 	player.Y = cell.COL;
+	current.Matrix[cell.ROW][cell.COL].IsFlag = false;
 	return cell;
 }
 
@@ -251,7 +252,6 @@ func (current *Map) createTheWay() {
 		if(endJ < j) {
 			moves = append(moves, Cell{ROW: i, COL: j - 1});
 		}
-
 		newEmptyCell := moves[rand.Intn(len(moves))];
 		current.Matrix[newEmptyCell.ROW][newEmptyCell.COL].Type = element.EMPTY;
 		i = newEmptyCell.ROW;
