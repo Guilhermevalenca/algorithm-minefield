@@ -1,0 +1,11 @@
+.element {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  border: solid 0.001px black;
+}
+
+.element img {
+  margin: 0;
+  padding: 0;
+}

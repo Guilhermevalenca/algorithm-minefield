@@ -24,14 +24,6 @@ export function useNewMap() {
       throw new Error("Elemento invalido, fora do escopo do mapa");
     }
     const { status } = await newMapService.nextMove(row, col);
-    switch (status) {
-      case MapStatus.DEFEAT:
-        alert("Voce perdeu");
-        break;
-      case MapStatus.VITORY:
-        alert("Voce ganhou");
-        break;
-    }
     if (status === MapStatus.DEFEAT || status === MapStatus.VITORY) {
       const data = await newMapService.getStatistic();
       statisticGame(

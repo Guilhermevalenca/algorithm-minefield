@@ -1,5 +1,6 @@
 import { MapEntity, PlayerEntity } from "@app/entities";
-import { RenderElement } from "./render-element";
+import { RenderElement } from "../render-element";
+import "./index.css";
 
 type Props = {
   map: MapEntity | null;
@@ -14,10 +15,10 @@ export function RenderMap({ map, player, nextMove }: Props) {
 
   return (
     <>
-      <table border={1}>
-        <tbody>
+      <table>
+        <tbody className="grid">
           {map.matrix.map((row, i) => (
-            <tr key={"row-" + i}>
+            <tr key={"row-" + i} className="row">
               {row.map((element, j) => (
                 <RenderElement
                   key={"col-" + j}
