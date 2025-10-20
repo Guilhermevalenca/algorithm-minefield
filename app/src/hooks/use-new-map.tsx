@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
-import type { MapEntity, PlayerEntity } from "../app/entities";
-import { newMapService } from "../app/services";
-import { MapStatus } from "../app/enums";
-import { statisticGame } from "../app/utils";
+import type { MapEntity, PlayerEntity } from "@app/entities";
+import { newMapService } from "@app/services";
+import { MapStatus } from "@app/enums";
+import { statisticGame } from "@app/utils";
 
 export function useNewMap() {
   const [map, setMap] = useState<MapEntity | null>(null);
@@ -13,6 +13,9 @@ export function useNewMap() {
     if (data !== null) {
       setMap(data.map);
       setPlayer(data.player);
+    } else {
+      setMap(null);
+      setPlayer(null);
     }
   }, []);
 

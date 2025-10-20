@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-import { TypeStartMap } from "./app/enums";
+import { TypeStartMap } from "@app/enums";
 import { NewMap, SelectTypeMap } from "./components/";
 import { ClassicMap } from "./components/classic-map";
 

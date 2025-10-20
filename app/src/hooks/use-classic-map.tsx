@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
-import { classicMapService } from "../app/services";
-import type { MapEntity } from "../app/entities";
-import { MapStatus } from "../app/enums";
+import { classicMapService } from "@app/services";
+import type { MapEntity } from "@app/entities";
+import { MapStatus } from "@app/enums";
 
 export function useClassicMap(): {
   map: MapEntity | null;

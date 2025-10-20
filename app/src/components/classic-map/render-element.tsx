@@ -1,5 +1,5 @@
-import type { ElementEntity } from "../../app/entities";
-import { ElementType } from "../../app/enums";
+import type { ElementEntity } from "@app/entities";
+import { ElementType } from "@app/enums";
 
 type Props = {
   element: ElementEntity;

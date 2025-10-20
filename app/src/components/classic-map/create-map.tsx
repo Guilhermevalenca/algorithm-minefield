@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from "react";
-import { classicMapService } from "../../app/services";
+import { classicMapService } from "@app/services";
 
 type Props = {
   getMap: () => Promise<void>;

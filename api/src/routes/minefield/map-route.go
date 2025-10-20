@@ -61,13 +61,6 @@ func nextMove(context *gin.Context) {
 	context.JSON(http.StatusOK, gin.H{
 		"status": currentMap.Status,
 	});
-
-	if(currentMap.Status == generatedMap.DEFEAT || currentMap.Status == generatedMap.VICTORY) {
-		currentMap.Rows = 0;
-		currentMap.Cols = 0;
-		currentMap.Matrix = nil;
-		currentMap.Status = generatedMap.IN_PROGRESS;
-	}
 }
 
 func getData(context *gin.Context) {
@@ -88,4 +81,11 @@ func getStatistic(context *gin.Context) {
 		"path_taken": path_taken,
 		"playning_time": time.Since(playning_time).Seconds(),
 	});
+
+	if(currentMap.Status == generatedMap.DEFEAT || currentMap.Status == generatedMap.VICTORY) {
+		currentMap.Rows = 0;
+		currentMap.Cols = 0;
+		currentMap.Matrix = nil;
+		currentMap.Status = generatedMap.IN_PROGRESS;
+	}
 }

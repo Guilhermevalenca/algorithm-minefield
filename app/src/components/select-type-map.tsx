@@ -1,4 +1,4 @@
-import { TypeStartMap } from "../app/enums";
+import { TypeStartMap } from "@app/enums";
 
 type Props = {
   select: (params: number) => void;
