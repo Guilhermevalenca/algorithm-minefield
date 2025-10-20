@@ -9,6 +9,7 @@ type Element struct {
 	IsRevealed bool `json:"is_revealed"`
 	IsFlag bool `json:"is_flag"`
 	Value int `json:"value"`
+	IsForceField bool `json:"is_force_field"`
 }
 
 const (
@@ -26,6 +27,7 @@ func NewElement(t int) (Element, error) {
 		IsRevealed: false,
 		IsFlag: false,
 		Value: 0,
+		IsForceField: false,
 	}
 	return response, nil;
 }

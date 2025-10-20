@@ -1,4 +1,4 @@
-package mapRoute
+package mapClassicRoute
 
 import (
 	"fmt"
@@ -12,19 +12,22 @@ import (
 var currentMap generatedMap.Map
 
 func Routes(router *gin.RouterGroup) {
-	router.GET("/map", getMap)
+	router.GET("classic/map", getMap);
 
-	router.POST("/map", generateMap);
+	router.POST("classic/map", generateMap);
 
-	router.POST("/map/select-cell", selectCell);
+	router.POST("classic/map/select-cell", selectCell);
 
-	router.POST("/map/toggle-flag", toggleFlag);
+	router.POST("classic/map/toggle-flag", toggleFlag);
 }
 
 func generateMap(context *gin.Context) {
 	var limits generatedMap.Cell;
 	fmt.Println(limits);
 	if err := context.BindJSON(&limits); err != nil {
+		context.JSON(http.StatusBadRequest, gin.H{
+			"error": "Invalid request body",
+		});
         return
     }
 	currentMap = generatedMap.GenerateMap(limits.ROW, limits.COL);
@@ -46,9 +49,12 @@ func getMap(context *gin.Context) {
 func selectCell(context *gin.Context) {
 	var cell generatedMap.Cell;
 	if err := context.BindJSON(&cell); err != nil {
+		context.JSON(http.StatusBadRequest, gin.H{
+			"error": "Invalid request body",
+		});
 		return
 	}
-	currentMap.SelectCell(cell.ROW, cell.COL);
+	currentMap.SelectClassicCell(cell.ROW, cell.COL);
 
 	context.JSON(http.StatusOK, gin.H{
 		"status": currentMap.Status,
@@ -70,6 +76,9 @@ func toggleFlag(context *gin.Context) {
 	var cell generatedMap.Cell;
 
 	if err := context.BindJSON(&cell); err != nil {
+		context.JSON(http.StatusBadRequest, gin.H{
+			"error": "Invalid request body",
+		});
 		return
 	}
 

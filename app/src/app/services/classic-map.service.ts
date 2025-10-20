@@ -1,13 +1,13 @@
 import type { AxiosInstance } from "axios";
 import { MapEntity } from "../entities";
-import { Service } from "./";
+import { Service } from ".";
 
-export class MapService extends Service {
+export class ClassicMapService extends Service {
   constructor(axios: AxiosInstance) {
     super(axios);
   }
-  async getMap(): Promise<MapEntity | null> {
-    const { data } = await this.axios.get<{ map: MapEntity }>("/map");
+  async getClassicMap(): Promise<MapEntity | null> {
+    const { data } = await this.axios.get<{ map: MapEntity }>("classic/map");
 
     if (data.map.rows <= 0 || data.map.cols <= 0) {
       return null;
@@ -21,11 +21,11 @@ export class MapService extends Service {
     );
   }
 
-  async generateMap(row: number, col: number): Promise<MapEntity> {
+  async generateClassicMap(row: number, col: number): Promise<MapEntity> {
     if (row <= 0 || col <= 0) {
       throw new Error("Dimensões para o mapa invalidas!");
     }
-    const { data } = await this.axios.post<{ map: MapEntity }>("/map", {
+    const { data } = await this.axios.post<{ map: MapEntity }>("classic/map", {
       row,
       col,
     });
@@ -40,11 +40,11 @@ export class MapService extends Service {
     );
   }
 
-  async selectCell(row: number, col: number) {
+  async selectClassicCell(row: number, col: number) {
     if (row < 0 || col < 0) {
       throw new Error("Elemento invalido, fora do escopo do mapa");
     }
-    const { data } = await this.axios.post("/map/select-cell", {
+    const { data } = await this.axios.post("classic/map/select-cell", {
       row,
       col,
     });

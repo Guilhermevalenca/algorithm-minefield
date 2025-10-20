@@ -26,7 +26,8 @@ export class MapEntity {
             element.type,
             element.is_revealed,
             element.is_flag,
-            element.value
+            element.value,
+            element.is_force_field
           )
       )
     );

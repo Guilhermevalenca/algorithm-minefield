@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
-import { mapService } from "../app/services";
+import { classicMapService } from "../app/services";
 import type { MapEntity } from "../app/entities";
 import { MapStatus } from "../app/enums";
 
-export function useMap(): {
+export function useClassicMap(): {
   map: MapEntity | null;
   refresh: () => Promise<void>;
   updateElement: (row: number, col: number) => Promise<void>;
@@ -11,7 +11,7 @@ export function useMap(): {
   const [map, setMap] = useState<MapEntity | null>(null);
 
   const fetch = useCallback(async () => {
-    const map = await mapService.getMap();
+    const map = await classicMapService.getClassicMap();
     setMap(map);
   }, []);
 
@@ -19,7 +19,7 @@ export function useMap(): {
     if (!map || map.matrix[row][col] === undefined) {
       throw new Error("Elemento invalido, fora do escopo do mapa");
     }
-    const { status } = await mapService.selectCell(row, col);
+    const { status } = await classicMapService.selectClassicCell(row, col);
 
     if (status === MapStatus.DEFEAT) {
       alert("Você perdeu");

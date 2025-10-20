@@ -5,12 +5,14 @@ export class ElementEntity {
   is_revealed: boolean;
   is_flag: boolean;
   value: number;
+  is_force_field: boolean;
 
   constructor(
     type: ElementType,
     is_revealed: boolean,
     is_flag: boolean,
-    value: number
+    value: number,
+    is_force_field: boolean
   ) {
     if (type < 0 || type > 2) {
       throw new Error("Tipo de elemento invalido");
@@ -22,5 +24,6 @@ export class ElementEntity {
     this.is_revealed = is_revealed;
     this.is_flag = is_flag;
     this.value = value;
+    this.is_force_field = is_force_field;
   }
 }

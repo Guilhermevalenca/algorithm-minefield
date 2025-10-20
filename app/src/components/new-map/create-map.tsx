@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from "react";
-import { mapService } from "../app/services";
+import { newMapService } from "../../app/services";
 
 type Props = {
   getMap: () => Promise<void>;
@@ -14,7 +14,7 @@ export function CreateMap({ getMap }: Props) {
   async function submit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    await mapService.generateMap(form.row, form.col);
+    await newMapService.generateMap(form.row, form.col);
 
     getMap();
   }

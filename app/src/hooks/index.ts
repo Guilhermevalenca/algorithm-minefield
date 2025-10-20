@@ -1,3 +1,4 @@
-import { useMap } from "./use-map";
+import { useClassicMap } from "./use-classic-map";
+import { useNewMap } from "./use-new-map";
 
-export { useMap };
+export { useClassicMap, useNewMap };

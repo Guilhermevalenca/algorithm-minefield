@@ -1,6 +1,8 @@
 // aqui fica todos os imports dos components
-import { RenderMap } from "./render-map";
-import { RenderElement } from "./render-element";
-import { CreateMap } from "./create-map";
+import { RenderMap } from "./classic-map/render-map";
+import { RenderElement } from "./classic-map/render-element";
+import { CreateMap } from "./classic-map/create-map";
+import { SelectTypeMap } from "./select-type-map";
+import { NewMap } from "./new-map/index";
 
-export { RenderMap, RenderElement, CreateMap };
+export { RenderMap, RenderElement, CreateMap, SelectTypeMap, NewMap };

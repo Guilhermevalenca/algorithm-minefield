@@ -1,8 +1,10 @@
 // aqui fica todos os imports das services
 import { Service } from "./default.service";
-import { MapService } from "./map.service";
+import { ClassicMapService } from "./classic-map.service";
 import { axios } from "../plugins";
+import { NewMapService } from "./new-map.service";
 
-const mapService = new MapService(axios);
+const classicMapService = new ClassicMapService(axios);
+const newMapService = new NewMapService(axios);
 
-export { Service, mapService };
+export { Service, classicMapService, newMapService };

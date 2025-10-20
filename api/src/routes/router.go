@@ -7,7 +7,8 @@ import (
 
 	"github.com/gin-contrib/cors"
 
-	mapRoute "minefield/main/src/routes/map"
+	minefieldRoute "minefield/main/src/routes/minefield"
+	mapClassicRoute "minefield/main/src/routes/minefield-classic"
 )
 
 
@@ -32,7 +33,8 @@ func Routes() *gin.Engine {
 
 	api := router.Group("/api");
 
-	mapRoute.Routes(api);
+	mapClassicRoute.Routes(api);
+	minefieldRoute.Routes(api);
 
 	return router;
 }

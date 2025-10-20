@@ -1,5 +1,5 @@
-import { MapEntity } from "../app/entities";
-import { RenderElement } from "./";
+import { MapEntity } from "../../app/entities";
+import { RenderElement } from "./render-element";
 
 type Props = {
   map: MapEntity | null;

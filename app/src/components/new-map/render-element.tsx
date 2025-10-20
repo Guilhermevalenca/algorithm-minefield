@@ -1,12 +1,19 @@
-import type { ElementEntity } from "../app/entities";
-import { ElementType } from "../app/enums";
+import type { ElementEntity } from "../../app/entities";
+import { ElementType } from "../../app/enums";
 
 type Props = {
   element: ElementEntity;
+  is_player: boolean;
   setElement: () => void;
+  player_quantity_upgrades?: number | undefined;
 };
 
-export function RenderElement({ element, setElement }: Props) {
+export function RenderElement({
+  element,
+  is_player,
+  setElement,
+  player_quantity_upgrades,
+}: Props) {
   // let imagePath = "";
   let message = "";
 
@@ -29,6 +36,13 @@ export function RenderElement({ element, setElement }: Props) {
 
   if (!element.is_revealed) {
     message = ":)";
+  }
+
+  if (is_player) {
+    message = "👤";
+    if (player_quantity_upgrades && player_quantity_upgrades > 0) {
+      message = "👤!";
+    }
   }
 
   return (
