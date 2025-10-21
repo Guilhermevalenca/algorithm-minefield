@@ -20,15 +20,17 @@ export function statisticGame(
   );
   if (status === MapStatus.DEFEAT) {
     swal.fire({
-      title: "Que pena",
+      title: "Que pena, você perdeu 😓",
       html,
-      icon: "error",
+      confirmButtonText:'Tentar novamente',
+      
     });
     return;
   }
   swal.fire({
-    title: "Parabéns",
+    title: "Parabéns,você venceu 🎉",
     html,
-    icon: "success",
+    confirmButtonText:'Jogar de novo',
+})
   });
 }
