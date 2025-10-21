@@ -15,7 +15,7 @@ export function RenderMap({ map, player, nextMove }: Props) {
 
   return (
     <>
-    <div className="player-status">{ player?.quantity_upgrades }</div>
+    <div className="player-status"> Quantidade de energia: { player?.quantity_upgrades }</div>
       <table>
         <tbody className="grid">
           {map.matrix.map((row, i) => (

@@ -80,3 +80,8 @@ button:focus-visible {
   }
 }
 
+.player-status{
+  margin: 1rem 0;
+  background-color: #f9f9f9;
+}
+
