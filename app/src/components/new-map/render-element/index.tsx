@@ -1,6 +1,7 @@
 import type { ElementEntity } from "@app/entities";
 import { ElementType } from "@app/enums";
 import "./index.css";
+import React from "react";
 
 type Props = {
   element: ElementEntity;
@@ -9,7 +10,7 @@ type Props = {
   player_quantity_upgrades?: number | undefined;
 };
 
-export function RenderElement({
+export const RenderElement = React.memo(function ({
   element,
   is_player,
   setElement,
@@ -53,4 +54,4 @@ export function RenderElement({
       <img src={imagePath} alt="Icone do elemento no campo minado" />
     </td>
   );
-}
+});
