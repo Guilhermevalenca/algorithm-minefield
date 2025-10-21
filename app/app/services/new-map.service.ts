@@ -78,6 +78,7 @@ export class NewMapService extends Service {
       total_mines: data.total_mines,
       bombs_revealed: data.bombs_revealed,
       playning_time: data.playning_time,
+      time_type: data.time_type,
       path_taken: data.path_taken ?? [],
     };
   }

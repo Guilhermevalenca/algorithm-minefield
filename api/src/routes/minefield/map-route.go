@@ -73,13 +73,21 @@ func getData(context *gin.Context) {
 }
 
 func getStatistic(context *gin.Context) {
+	time_response := time.Since(playning_time).Seconds();
+	time_type := "Segundos";
+
+	if(time_response >= 60) {
+		time_response = time.Since(playning_time).Minutes();
+		time_type = "Minutos";
+	}
 	context.JSON(http.StatusOK, gin.H{
 		"status": currentMap.Status,
 		"quantity_upgrades": currentPlayer.QuantityUpgrades,
 		"total_mines": currentMap.TotalMines(),
 		"bombs_revealed": currentMap.BombsRevealed(),
 		"path_taken": path_taken,
-		"playning_time": time.Since(playning_time).Seconds(),
+		"playning_time": time_response,
+		"time_type": time_type,
 	});
 
 	if(currentMap.Status == generatedMap.DEFEAT || currentMap.Status == generatedMap.VICTORY) {

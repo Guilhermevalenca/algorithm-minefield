@@ -5,13 +5,16 @@ export function statisticGame(
   status: MapStatus,
   path_taken: number,
   playning_time: number,
+  time_type: "Segundos" | "Minutos",
   bombs_revealed: number,
   total_mines: number,
   quantity_upgrades: number
 ) {
   const html = (
     <div className="statistics-panel">
-      <p>Tempo: {playning_time.toFixed(2)} segundos</p>
+      <p>
+        Tempo: {playning_time.toFixed(2)} {time_type}
+      </p>
       <p>Blocos percorrido: {path_taken}</p>
       <p>Bombas reveladas: {bombs_revealed}</p>
       <p>Quantidade total de bombas: {total_mines}</p>

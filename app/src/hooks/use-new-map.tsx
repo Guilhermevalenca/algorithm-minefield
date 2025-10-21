@@ -32,6 +32,7 @@ export function useNewMap() {
         data.status,
         data.path_taken.length,
         data.playning_time,
+        data.time_type,
         data.bombs_revealed,
         data.total_mines,
         data.quantity_upgrades
