@@ -24,6 +24,7 @@ export function useNewMap() {
       throw new Error("Elemento invalido, fora do escopo do mapa");
     }
     const { status } = await newMapService.nextMove(row, col);
+    console.log(status);
     if (status === MapStatus.DEFEAT || status === MapStatus.VITORY) {
       const data = await newMapService.getStatistic();
       statisticGame(

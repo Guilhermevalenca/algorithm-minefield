@@ -140,6 +140,9 @@ func (current *Map) NextMove(player *player.Player, cell Cell) Cell {
 	if(current.Matrix[cell.ROW][cell.COL].IsForceField) {
 		player.QuantityUpgrades++;
 	}
+	if(cell.ROW == current.finishLine.ROW && cell.COL == current.finishLine.COL) {
+		current.Status = VICTORY;
+	}
 	player.X = cell.ROW;
 	player.Y = cell.COL;
 	current.Matrix[cell.ROW][cell.COL].IsFlag = false;
@@ -298,6 +301,10 @@ func (currentMap Map) LogMatrix() {
 				currentMessage += "X";
 			} else if(elementChild.IsNumber()) {
 				currentMessage += fmt.Sprintf("%d", elementChild.Value);
+			} else if(i == currentMap.startingLine.ROW && j == currentMap.startingLine.COL) {
+				currentMessage += "A";
+			} else if(i == currentMap.finishLine.ROW && j == currentMap.finishLine.COL) {
+				currentMessage += "B";
 			} else {
 				currentMessage += "_";
 			}

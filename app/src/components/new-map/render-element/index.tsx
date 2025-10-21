@@ -1,7 +1,6 @@
 import type { ElementEntity } from "@app/entities";
 import { ElementType } from "@app/enums";
 import "./index.css";
-import React from "react";
 
 type Props = {
   element: ElementEntity;
@@ -41,9 +40,9 @@ export function RenderElement({
   }
 
   if (element.is_flag && !element.is_revealed) {
-      imagePath = "/public/images/flag.png";
+    imagePath = "/public/images/flag.png";
   } else if (is_player) {
-      imagePath = "/public/images/cart-default.gif";
+    imagePath = "/public/images/cart-default.gif";
     if (player_quantity_upgrades && player_quantity_upgrades > 0) {
       imagePath = "/public/images/cart-charged.gif";
     }
