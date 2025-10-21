@@ -18,19 +18,16 @@ export function statisticGame(
       <p>Quanto de energia ainda resta: {quantity_upgrades}</p>
     </>
   );
+  let title = "Que pena, você perdeu 😓";
   if (status === MapStatus.DEFEAT) {
-    swal.fire({
-      title: "Que pena, você perdeu 😓",
-      html,
-      confirmButtonText:'Tentar novamente',
-      
-    });
+    title = "Que pena, você perdeu 😓";
     return;
+  } else {
+    title = "Parabéns,você venceu 🎉";
   }
   swal.fire({
-    title: "Parabéns,você venceu 🎉",
+    title,
     html,
-    confirmButtonText:'Jogar de novo',
-})
+    confirmButtonText: "Jogar de novo",
   });
 }
