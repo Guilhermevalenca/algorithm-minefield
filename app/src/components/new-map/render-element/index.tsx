@@ -40,25 +40,18 @@ export function RenderElement({
     imagePath = "/public/images/default-floor.png";
   }
 
-  const Element = ({ children }: { children: React.ReactNode }) => (
-    <td onClick={setElement} className="element" width="45" height="45">
-      {children}
-    </td>
-  );
-
   if (element.is_flag && !element.is_revealed) {
-    return <Element>🚩</Element>;
+      imagePath = "/public/images/flag.png";
   } else if (is_player) {
-    let message = "👤";
+      imagePath = "/public/images/cart-default.gif";
     if (player_quantity_upgrades && player_quantity_upgrades > 0) {
-      message = "👤!";
+      imagePath = "/public/images/cart-charged.gif";
     }
-    return <Element>{message}</Element>;
   }
 
   return (
-    <Element>
+    <td onClick={setElement} className="element" width="45" height="45">
       <img src={imagePath} alt="Icone do elemento no campo minado" />
-    </Element>
+    </td>
   );
 }
