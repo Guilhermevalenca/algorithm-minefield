@@ -21,7 +21,6 @@ export function statisticGame(
   let title = "Que pena, você perdeu 😓";
   if (status === MapStatus.DEFEAT) {
     title = "Que pena, você perdeu 😓";
-    return;
   } else {
     title = "Parabéns,você venceu 🎉";
   }
