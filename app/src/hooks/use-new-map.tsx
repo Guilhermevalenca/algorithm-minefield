@@ -28,7 +28,7 @@ export function useNewMap() {
     if (status === MapStatus.DEFEAT || status === MapStatus.VITORY) {
       const data = await newMapService.getStatistic();
       console.log(data);
-      statisticGame(
+      await statisticGame(
         data.status,
         data.path_taken.length,
         data.playning_time,

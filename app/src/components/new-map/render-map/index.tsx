@@ -1,48 +1,17 @@
 import { MapEntity, PlayerEntity } from "@app/entities";
 import { RenderElement } from "../render-element";
 import "./index.css";
+import React from "react";
 
 type Props = {
   map: MapEntity | null;
   player: PlayerEntity | null;
   nextMove: (row: number, col: number) => Promise<void>;
 };
-function EnergyBar({ player }) {
-  const total_energy:number = player?.quantity_upgrades ?? 0;
-  const max_energy:number = 5;
-  const percent:number = (total_energy/max_energy)*100
 
-  return (
-    <div className="progress-bar-container">
-      <img
-      className="progress-bar-icon"
-      src="/public/images/energy.png"
-      width={35}
-      height={35}
-      style={{
-        marginLeft: "auto"
-      }}
-      />
-      <div style={{
-      display: "flex",
-      width: "150px",
-      height: "16px",
-      background: "#ddd",
-      borderRadius: "8px",
-      overflow: "hidden"
-    }}>
-      <div
-        style={{
-          width: `${percent}%`,
-          height: "100%",
-          background: "#fff200",
-          transition: "width .3s"
-        }}
-      />
-    </div>
-    </div>
-  )
-}
+type EnergyBarProps = {
+  quantity_upgrades?: number;
+};
 
 export function RenderMap({ map, player, nextMove }: Props) {
   if (!map) return <div>Mapa nao encontrado</div>;
@@ -51,7 +20,7 @@ export function RenderMap({ map, player, nextMove }: Props) {
 
   return (
     <>
-    <EnergyBar player = {player} />
+      <EnergyBar quantity_upgrades={player?.quantity_upgrades} />
       <table>
         <tbody className="grid">
           {map.matrix.map((row, i) => (
@@ -74,3 +43,42 @@ export function RenderMap({ map, player, nextMove }: Props) {
     </>
   );
 }
+
+const EnergyBar = React.memo(function ({ quantity_upgrades }: EnergyBarProps) {
+  const total_energy: number = quantity_upgrades ?? 0;
+  const max_energy: number = 5;
+  const percent: number = (total_energy / max_energy) * 100;
+
+  return (
+    <div className="progress-bar-container">
+      <img
+        className="progress-bar-icon"
+        src="/public/images/energy.png"
+        width={35}
+        height={35}
+        style={{
+          marginLeft: "auto",
+        }}
+      />
+      <div
+        style={{
+          display: "flex",
+          width: "150px",
+          height: "16px",
+          background: "#ddd",
+          borderRadius: "8px",
+          overflow: "hidden",
+        }}
+      >
+        <div
+          style={{
+            width: `${percent}%`,
+            height: "100%",
+            background: "#fff200",
+            transition: "width .3s",
+          }}
+        />
+      </div>
+    </div>
+  );
+});

@@ -35,16 +35,13 @@ export const RenderElement = React.memo(function ({
     default:
       imagePath = "/public/images/default-floor.png";
   }
-  if(element.is_force_field) {
-    imagePath = "/public/images/charged-floor.gif";
-  }
 
   if (!element.is_revealed) {
-    if(element.is_force_field) {
-    imagePath = "/public/images/charged-floor.gif";
-  }else{
-    imagePath = "/public/images/default-floor.png";
-  }
+    if (element.is_force_field) {
+      imagePath = "/public/images/charged-floor.gif";
+    } else {
+      imagePath = "/public/images/default-floor.png";
+    }
   }
 
   if (element.is_flag && !element.is_revealed) {

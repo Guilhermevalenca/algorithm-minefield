@@ -1,7 +1,7 @@
 import { MapStatus } from "../enums";
 import { swal } from "../plugins/";
 
-export function statisticGame(
+export async function statisticGame(
   status: MapStatus,
   path_taken: number,
   playning_time: number,
@@ -27,9 +27,12 @@ export function statisticGame(
   } else {
     title = "Parabéns,você venceu 🎉";
   }
-  swal.fire({
+  return swal.fire({
     title,
     html,
     confirmButtonText: "Jogar de novo",
+    allowEscapeKey: false,
+    allowOutsideClick: false,
+    animation: true,
   });
 }
