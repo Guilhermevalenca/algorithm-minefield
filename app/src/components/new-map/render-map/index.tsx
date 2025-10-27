@@ -7,6 +7,42 @@ type Props = {
   player: PlayerEntity | null;
   nextMove: (row: number, col: number) => Promise<void>;
 };
+function EnergyBar({ player }) {
+  const total_energy:number = player?.quantity_upgrades ?? 0;
+  const max_energy:number = 5;
+  const percent:number = (total_energy/max_energy)*100
+
+  return (
+    <div className="progress-bar-container">
+      <img
+      className="progress-bar-icon"
+      src="/public/images/energy.png"
+      width={35}
+      height={35}
+      style={{
+        marginLeft: "auto"
+      }}
+      />
+      <div style={{
+      display: "flex",
+      width: "150px",
+      height: "16px",
+      background: "#ddd",
+      borderRadius: "8px",
+      overflow: "hidden"
+    }}>
+      <div
+        style={{
+          width: `${percent}%`,
+          height: "100%",
+          background: "#fff200",
+          transition: "width .3s"
+        }}
+      />
+    </div>
+    </div>
+  )
+}
 
 export function RenderMap({ map, player, nextMove }: Props) {
   if (!map) return <div>Mapa nao encontrado</div>;
@@ -15,7 +51,7 @@ export function RenderMap({ map, player, nextMove }: Props) {
 
   return (
     <>
-    <div className="player-status"> Quantidade de energia: { player?.quantity_upgrades }</div>
+    <EnergyBar player = {player} />
       <table>
         <tbody className="grid">
           {map.matrix.map((row, i) => (

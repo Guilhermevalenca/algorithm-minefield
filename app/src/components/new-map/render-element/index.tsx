@@ -35,17 +35,24 @@ export const RenderElement = React.memo(function ({
     default:
       imagePath = "/public/images/default-floor.png";
   }
+  if(element.is_force_field) {
+    imagePath = "/public/images/charged-floor.gif";
+  }
 
   if (!element.is_revealed) {
+    if(element.is_force_field) {
+    imagePath = "/public/images/charged-floor.gif";
+  }else{
     imagePath = "/public/images/default-floor.png";
+  }
   }
 
   if (element.is_flag && !element.is_revealed) {
     imagePath = "/public/images/flag.png";
   } else if (is_player) {
-    imagePath = "/public/images/cart-default.gif";
+    imagePath = "/public/images/card-default-2.gif";
     if (player_quantity_upgrades && player_quantity_upgrades > 0) {
-      imagePath = "/public/images/cart-charged.gif";
+      imagePath = "/public/images/card-charged-2.gif";
     }
   }
 
