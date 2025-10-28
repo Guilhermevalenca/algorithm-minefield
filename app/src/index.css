@@ -1,12 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Cal+Sans&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Pixelify+Sans:wght@400..700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Pixelify Sans", sans-serif;
+  font-size: larger;
   line-height: 1.5;
-  font-weight: 400;
-
+  font-weight: 300;
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -42,7 +42,7 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #25a149;
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -52,6 +52,14 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+input{
+  background-color: #ffffff;
+  height: 2em;
+  text-align: center;
+  font-size: large;
+  color: #083616;
 }
 
 @media (prefers-color-scheme: light) {
@@ -86,15 +94,64 @@ button:focus-visible {
 }
 .progress-bar-container{
  display: flex;
- flex-flow: row nowrap;
+ position: fixed;
+ background-color: #25a149;
+ border-radius: 1em;
+ padding: 0.2em;
+ padding-bottom: 0.5em;
+ top: 16vh;
+ left: 90vw;
+ flex-flow: column nowrap;
  align-items: center;
  align-content: center;
 }
 .btn-start {
  display: flex;
  align-self: center;
+ font-size: larger;
 }
 .btn-restart {
  display: flex;
  align-self: flex-start;
+ font-size: larger;
+}
+.form-container{
+  display: flex;
+  border-radius: 2em;
+  width: 40vw;
+  padding: 4em;
+  background-color: #444444;
+  flex-direction: column;
+  gap: 2em;
+}
+.form-item{
+  display: flex;
+  flex-direction: column;
+}
+.form-label{
+  display: flex;
+  align-self: flex-start;
+}
+.map-container{
+  border-radius: 1em;
+  background-color: #444444;
+  margin-top: 1em;
+  padding: 1em 1em 1em 1em;
+}
+.swal2-popup {
+  font-family: "Ubuntu", sans-serif;;
+  background-color: #444444 !important;
+  color: #ffffff;
+  border-radius: 1em !important;
+  padding:1em;
+}
+
+.swal2-title {
+  font-family: "Pixelify Sans", sans-serif;
+}
+
+.swal2-confirm {
+  background-color: #25a149 !important;
+  font-family: "Pixelify Sans", sans-serif;
+  font-size: larger;
 }

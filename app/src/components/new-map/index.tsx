@@ -21,13 +21,11 @@ export function NewMap() {
 
   return (
     <>
-      <button 
-      onClick={() => newGame()}
-      className= {isPlaying ? "btn-start" : "btn-restart"}
-        >
-        
-        {!isPlaying ? "Iniciar Jogo" : "Reiniciar"}
-      </button>
+      {!showForm && (
+        <button onClick={() => newGame()} className= {isPlaying ? "btn-start" : "btn-restart"}>
+          {!isPlaying ? "Iniciar Jogo" : "Novo jogo"}
+        </button>
+      )}
       {showForm && <CreateMap getMap={() => startGame()} />}
       {map && isPlaying && (
         <RenderMap map={map} player={player} nextMove={nextMove} />

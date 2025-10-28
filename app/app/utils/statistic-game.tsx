@@ -15,7 +15,7 @@ export async function statisticGame(
       <p>
         Tempo: {playning_time.toFixed(2)} {time_type}
       </p>
-      <p>Blocos percorrido: {path_taken}</p>
+      <p>Blocos percorridos: {path_taken}</p>
       <p>Bombas reveladas: {bombs_revealed}</p>
       <p>Quantidade total de bombas: {total_mines}</p>
       <p>Quanto de energia ainda resta: {quantity_upgrades}</p>

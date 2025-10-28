@@ -21,21 +21,33 @@ export function CreateMap({ getMap }: Props) {
 
   return (
     <form onSubmit={submit}>
-      <label>
+      <div className="form-container">
+        <h1>Novo Jogo</h1>
+
+        <div className="form-item">
+        <label className="form-label"htmlFor="row-number">
         Total de linhas:
+        </label>
         <input
           type="number"
           onChange={(e) => setForm({ ...form, row: Number(e.target.value) })}
         />
-      </label>
-      <label>
+      </div>
+
+      <div className="form-item">
+        <label className="form-label" htmlFor="col-number">
         Total de colunas:
+        </label>
         <input
+          id="col-number"
           type="number"
           onChange={(e) => setForm({ ...form, col: Number(e.target.value) })}
         />
-      </label>
-      <button type="submit">Gerar mapa</button>
+  
+      </div>
+  
+      <button className="form-item" type="submit">Gerar mapa</button>
+      </div>
     </form>
   );
 }

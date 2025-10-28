@@ -19,7 +19,7 @@ export function RenderMap({ map, player, nextMove }: Props) {
   console.log(player?.quantity_upgrades);
 
   return (
-    <>
+    <div className="map-container">
       <EnergyBar quantity_upgrades={player?.quantity_upgrades} />
       <table>
         <tbody className="grid">
@@ -40,7 +40,7 @@ export function RenderMap({ map, player, nextMove }: Props) {
           ))}
         </tbody>
       </table>
-    </>
+    </div>
   );
 }
 
@@ -57,14 +57,14 @@ const EnergyBar = React.memo(function ({ quantity_upgrades }: EnergyBarProps) {
         width={35}
         height={35}
         style={{
-          marginLeft: "auto",
+          margin: "0",
         }}
       />
       <div
         style={{
           display: "flex",
-          width: "150px",
-          height: "16px",
+          width: "16px",
+          height: "150px",
           padding: "4px",
           background: "#ffffff",
           borderRadius: "8px",
@@ -73,10 +73,10 @@ const EnergyBar = React.memo(function ({ quantity_upgrades }: EnergyBarProps) {
       >
         <div
           style={{
-            width: `${percent}%`,
-            height: "100%",
+            height: `${percent}%`,
+            width: "100%",
             background: "#fff200",
-            transition: "width .3s",
+            transition: "height .3s",
           }}
         />
       </div>
