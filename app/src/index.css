@@ -90,3 +90,11 @@ button:focus-visible {
  align-items: center;
  align-content: center;
 }
+.btn-start {
+ display: flex;
+ align-self: center;
+}
+.btn-restart {
+ display: flex;
+ align-self: flex-start;
+}

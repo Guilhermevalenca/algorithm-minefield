@@ -65,7 +65,8 @@ const EnergyBar = React.memo(function ({ quantity_upgrades }: EnergyBarProps) {
           display: "flex",
           width: "150px",
           height: "16px",
-          background: "#ddd",
+          padding: "4px",
+          background: "#ffffff",
           borderRadius: "8px",
           overflow: "hidden",
         }}
